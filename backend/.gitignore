@@ -17,5 +17,7 @@
 /bin/.phpunit/
 .phpunit.result.cache
 /phpunit.xml
-/phpunit.xml.dist
 ###< symfony/phpunit-bridge ###
+
+###> symfony/migration-bundle ###
+/migrations/Version*

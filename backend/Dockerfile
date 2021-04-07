@@ -3,6 +3,10 @@ FROM php:7.4-fpm
 ARG username
 ARG uid
 ARG gid
+ARG up_db
+
+ENV up_db=$up_db
+
 RUN (groupadd --gid $gid "$username" || groupadd "$username" || true) && (useradd  -l -m -s "/bin/bash" --gid "$username" --comment '' --uid $uid "$username" || useradd  -l -m -s "/bin/bash" --gid "$username" --comment '' "$username")
 
 # PHP extensions needed for symfony.
@@ -26,5 +30,10 @@ RUN mv $HOME/.symfony/bin/symfony /usr/local/bin/symfony
 
 WORKDIR /var/www/html
 COPY . ./
+
+# Running a script to make migrations and update the symfony database schema.
+RUN ["chmod", "+x", "data/bin/entrypoints-custom.sh"]
+
+ENTRYPOINT [ "sh", "data/bin/entrypoints-custom.sh" ]
 
 CMD [ "symfony", "serve" ]

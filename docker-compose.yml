@@ -22,9 +22,12 @@ services:
         uid: ${USER_ID:-0}
         gid: ${GROUP_ID:-0}
         username: ${USERNAME:-0}
+        up_db: ${INITIAL_DB}
     container_name: phone-catalog_api
     volumes:
       - ./backend:/var/www/html
+    depends_on:
+      - database
     links:
       - database
     networks:
