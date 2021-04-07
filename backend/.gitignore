@@ -8,3 +8,14 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+###> ddev tool cli ###
+/.ddev/
+###< ddev tool cli ###
+
+###> symfony/phpunit-bridge ###
+/bin/.phpunit/
+.phpunit.result.cache
+/phpunit.xml
+/phpunit.xml.dist
+###< symfony/phpunit-bridge ###

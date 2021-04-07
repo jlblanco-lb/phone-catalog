@@ -1,5 +1,10 @@
 FROM php:7.4-fpm
 
+ARG username
+ARG uid
+ARG gid
+RUN (groupadd --gid $gid "$username" || groupadd "$username" || true) && (useradd  -l -m -s "/bin/bash" --gid "$username" --comment '' --uid $uid "$username" || useradd  -l -m -s "/bin/bash" --gid "$username" --comment '' "$username")
+
 # PHP extensions needed for symfony.
 RUN docker-php-ext-install pdo_mysql
 
