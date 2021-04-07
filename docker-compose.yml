@@ -1,0 +1,46 @@
+version: "3.8"
+services:
+  database:
+    # Database do not need to be exposed.
+    image: mariadb:10.1
+    container_name: phone-catalog_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    networks:
+      app-phone-catalog_network:
+        aliases:
+          - mariadb_host
+  backend:
+    # API rest do not need to be exposed will be linked internally.
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: phone-catalog_api
+    volumes:
+      - ./backend:/var/www/html
+    links:
+      - database
+    networks:
+      - app-phone-catalog_network
+  frontend:
+    # React app will be exposed through env dynamic port.
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: phone-catalog_web
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - ${APP_REACT_PORT}:3000
+    links:
+      - backend
+    networks:
+      - app-phone-catalog_network
+
+networks:
+  app-phone-catalog_network:
+    driver: bridge
