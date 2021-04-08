@@ -27,6 +27,11 @@ class Phone
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $manufacturer;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $description;
 
     /**
@@ -156,6 +161,18 @@ class Phone
     public function setRam(int $ram): self
     {
         $this->ram = $ram;
+
+        return $this;
+    }
+
+    public function getManufacturer(): ?string
+    {
+        return $this->manufacturer;
+    }
+
+    public function setManufacturer(string $manufacturer): self
+    {
+        $this->manufacturer = $manufacturer;
 
         return $this;
     }

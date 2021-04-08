@@ -1,0 +1,11 @@
+App\Entity\Phone:
+  phone_{1..100}:
+    name: <name()>
+    manufacturer: <company()>
+    description: <text()>
+    color: <colorName()>
+    price: <numberBetween(119, 399)>
+    imageFileName: <imageUrl(640, 480, 'cats')>
+    screen: <numerify(# '')>
+    processor: <isbn13()>
+    ram: <randomElement([128,256])>
