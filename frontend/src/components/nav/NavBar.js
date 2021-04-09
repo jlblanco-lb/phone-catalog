@@ -7,13 +7,8 @@ import Menu from '@material-ui/core/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
+import './NavBar.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -57,16 +52,14 @@ export default function NavBar() {
                     keepMounted
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
+                    className="main-nav-bar-wrapper"
                 >
-                    <Router>
-                        <MenuItem onClick={handleClose}>
-                            <Link to="/">Dashboard</Link>
-                        </MenuItem>
-                        <hr/>
-                        <MenuItem onClick={handleClose}>
-                            <Link to="/phones/new">Add new phone</Link>
-                        </MenuItem>
-                    </Router>
+                    <MenuItem onClick={handleClose}>
+                        <Link to="/">Dashboard</Link>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                        <Link to="/phones/create">Add new phone</Link>
+                    </MenuItem>
                 </Menu>
             </AppBar>
         </div>

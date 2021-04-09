@@ -33,7 +33,7 @@ export default function Home() {
         <Container fixed className="phone-container">
             <Grid container spacing={3}>
                 {phones.map((phone, i) => (
-                        <Grid key={i} item xs={12} sm={6} md={4} lg={3} xl={2}>
+                        <Grid key={i} item xs={12} sm={6} md={4} lg={3} xl={3}>
                             <PhoneBox phone={phone}/>
                         </Grid>
                 ))}

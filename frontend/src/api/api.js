@@ -10,3 +10,13 @@ export const getPhones = async () => {
             console.log(error);
         });
 };
+
+export const getPhone = async (id) => {
+    return await axios.get(`${ENTRYPOINT}/phones/${id}.json`)
+        .then((response) => {
+            return response.data;
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+}

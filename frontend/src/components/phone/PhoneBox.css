@@ -1,7 +1,28 @@
-.phone-box-actions button {
+.phone-box-actions a {
     margin: 0 auto;
+    text-decoration: none;
 }
 
 .phone-box-actions span {
     font-size: 12px;
+    font-family: "Roboto Light", sans-serif;
+}
+
+.phone-box-item-price {
+    font-size: 22px;
+}
+
+.phone-box-item-manufacturer {
+    font-size: 24px;
+    color: #1b1b1b;
+    text-align: center;
+}
+
+.phone-box-actions-button-wrapper {
+    margin:0 auto;
+}
+
+.phone-box-item-link {
+    text-decoration: none;
+    color: #1b1b1b;
 }
