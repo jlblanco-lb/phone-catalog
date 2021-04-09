@@ -1,15 +1,15 @@
 # Pull official base image
-FROM node:13.12.0-alpine
+FROM node:current-alpine3.10
 
 # Set working directory
 WORKDIR /app
 
 # Add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+ENV NODE_PATH="/usr/local/share/.config/yarn/global/node_modules:${NODE_PATH}"
 
 # Install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
+COPY package*.json ./
+COPY yarn.lock ./
 RUN npm install --silent
 RUN npm install react-scripts@3.4.1 -g --silent
 
@@ -17,4 +17,4 @@ RUN npm install react-scripts@3.4.1 -g --silent
 COPY . ./
 
 # Start app
-CMD ["npm", "start"]
+CMD ["yarn", "start"]

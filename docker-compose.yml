@@ -14,7 +14,7 @@ services:
         aliases:
           - mariadb_host
   backend:
-    # API rest do not need to be exposed will be linked internally.
+    # Exposing backend access allowing UI API access
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -32,6 +32,8 @@ services:
       - database
     networks:
       - app-phone-catalog_network
+    ports:
+      - ${APP_SYMFONY_PORT}:8000
   frontend:
     # React app will be exposed through env dynamic port.
     build: 
