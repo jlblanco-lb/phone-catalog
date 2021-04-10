@@ -23,7 +23,7 @@ const Show = (props) => {
     }, [props]);
 
     return (
-        <div className="PhoneDescription">
+        <div className="PhoneDescriptionPage">
             <Header/>
             <Container fixed className="phone-container" maxWidth="xs">
                 <PhoneBox phone={phone} full={true}/>

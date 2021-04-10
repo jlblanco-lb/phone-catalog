@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
+        textAlign: 'center',
+        textDecoration: 'none',
+        color: 'white'
     },
 }));
 
@@ -42,7 +45,7 @@ export default function NavBar() {
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" className={classes.title}>
+                    <Typography className={classes.title} component={Link} to="/" variant="h6">
                         Phone Catalog
                     </Typography>
                 </Toolbar>

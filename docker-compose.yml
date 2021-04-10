@@ -49,6 +49,7 @@ services:
       - backend
     networks:
       - app-phone-catalog_network
+    stdin_open: true
 
 networks:
   app-phone-catalog_network:

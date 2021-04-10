@@ -1,3 +1,4 @@
+import React from "react";
 import {getPhones} from "../../api/api";
 import {useEffect, useState} from "react";
 import './Home.css';

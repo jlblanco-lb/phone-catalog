@@ -10,8 +10,8 @@ ENV NODE_PATH="/usr/local/share/.config/yarn/global/node_modules:${NODE_PATH}"
 # Install app dependencies
 COPY package*.json ./
 COPY yarn.lock ./
-RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
+RUN yarn install
+RUN yarn add react-scripts@3.4.1
 
 # Add app
 COPY . ./
