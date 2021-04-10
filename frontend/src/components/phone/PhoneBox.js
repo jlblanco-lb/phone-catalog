@@ -5,33 +5,47 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import {Grid, Paper} from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import './PhoneBox.css';
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from '@material-ui/icons/Delete';
 import {ArrowBackRounded} from "@material-ui/icons";
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
+import {deletePhone} from "../../api/api";
 
 const PhoneBox = ({ phone, full }) => {
+    const history = useHistory();
+
+    const delPhone = (id) => {
+        deletePhone(id)
+            .then((response) => {
+                history.goBack();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
     const actionsInfo = () => {
         return (
             <div className="phone-box-actions-button-wrapper">
-                <Link to="/">
+                <Link to={'/'} >
                     <IconButton color="default" aria-label="back">
                         <ArrowBackRounded />
                     </IconButton>
                 </Link>
-                <Link to="">
+                <Link to={`/phones/update/${phone['id']}`} >
                     <IconButton color="primary" aria-label="edit">
                         <EditRoundedIcon />
                     </IconButton>
                 </Link>
-                <Link to="">
+                <div onClick={() => {
+                    if (window.confirm('Are you sure you wish to delete this item?')) delPhone(phone.id)
+                }}>
                     <IconButton color="secondary" aria-label="delete">
                         <DeleteIcon />
                     </IconButton>
-                </Link>
+                </div>
             </div>
         )
     }
@@ -46,14 +60,25 @@ const PhoneBox = ({ phone, full }) => {
                         image={`${phone['imageFileName']}`}
                         title={`${phone['name']}`}
                     />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {phone['name']}
-                        </Typography>
-                        <Typography variant="body1" color="textSecondary" component="p">
-                            {phone['description']}
-                        </Typography>
-                    </CardContent>
+                        {full ? (
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    {phone['name']}
+                                </Typography>
+                                <Typography variant="body1" color="textSecondary" component="p" align="center">
+                                    {phone['description']}
+                                </Typography>
+                            </CardContent>
+                        ):(
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2" align="center">
+                                    {phone['name']}
+                                </Typography>
+                                <Typography variant="body1" color="textPrimary" component="p" align="center">
+                                    {phone['price']} €
+                                </Typography>
+                            </CardContent>
+                        )}
                 </CardActionArea>
             </Link>
                 {full? (

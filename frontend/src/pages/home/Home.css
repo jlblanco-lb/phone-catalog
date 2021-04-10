@@ -1,3 +1,14 @@
 .phone-container {
     margin-top: 10px;
 }
+.dashboard-add-phone-link {
+    margin-top: 5px;
+}
+.loading-spinner {
+    position: fixed;
+    left: 50%;
+    top: 25%;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
