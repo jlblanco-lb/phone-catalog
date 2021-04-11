@@ -11,8 +11,10 @@ to develop applications following the [Symfony Best Practices][3].
 
 ## Requirements
 
-* docker
-* docker-compose
+* Docker version >= 20.10.5
+* Docker-compose >= 1.25.5
+* Npm version >= 6.14.4
+* Yarn version >=1.22.10
 
 ## Running the application
 Both applications are dockerized and can be separately launched, but also are orchestrated through docker-compose.
@@ -31,6 +33,8 @@ For the first time (this will erase the whole data):
 
 If it is not the first time:
 ```docker-compose up```
+
+After few minutes it will be possible to access by default through `http://localhost:3000` or by the port that was specified. 
 
 ## Backend
 
