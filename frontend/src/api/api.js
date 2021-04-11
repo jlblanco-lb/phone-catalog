@@ -22,7 +22,6 @@ export const getPhone = async (id) => {
 }
 
 export const createPhone = async (data) => {
-    console.log(data.imageFileName);
     const parseData = {
         "name": data.phoneName,
         "manufacturer": data.manufacturer,

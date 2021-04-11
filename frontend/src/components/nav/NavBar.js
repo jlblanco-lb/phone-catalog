@@ -39,13 +39,13 @@ export default function NavBar() {
     };
 
     return (
-        <div className={classes.root}>
+        <div id="nav-bar-main-menu" className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                    <IconButton id="toggle-menu-button" edge="start" className={classes.menuButton} color="inherit" aria-label="menu" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                         <MenuIcon />
                     </IconButton>
-                    <Typography className={classes.title} component={Link} to="/" variant="h6">
+                    <Typography id="nav-bar-main-menu-center" className={classes.title} component={Link} to="/" variant="h6">
                         Phone Catalog
                     </Typography>
                 </Toolbar>

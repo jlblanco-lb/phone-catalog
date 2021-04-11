@@ -41,7 +41,7 @@ services:
       dockerfile: Dockerfile
     container_name: phone-catalog_web
     volumes:
-      - ./frontend:/app
+      - ./frontend:/app:rw,cached
       - /app/node_modules
     ports:
       - ${APP_REACT_PORT}:3000

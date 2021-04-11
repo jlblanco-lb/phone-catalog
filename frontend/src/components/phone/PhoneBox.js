@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -49,6 +49,12 @@ const PhoneBox = ({ phone, full }) => {
             </div>
         )
     }
+    useEffect(() => {
+        if(full)
+            document.title = `Phone Catalog | ${phone['name']}`;
+        else
+            document.title = 'Phone Catalog | Dashboard';
+    });
 
     return (
         <Paper elevation={3} className="phone-box" >

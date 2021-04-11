@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import noImage from '../../no_picture.png';
@@ -77,6 +77,10 @@ const Create = () => {
         }
     }
 
+    useEffect(() => {
+        document.title = 'Phone Catalog | Create phone';
+    });
+
     return (
         <div className="PhoneCreationPage">
             <Header/>
@@ -92,7 +96,7 @@ const Create = () => {
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
-                                    label="Name" type="text" variant="outlined" fullWidth margin="normal" required={true} {...field} />
+                                    label="Name" id="phone-name-autofocus" type="text" variant="outlined" fullWidth margin="normal" autoFocus required={true} {...field} />
                                 }
                             />
                             {errors.phoneName && <Alert severity="error">{errors.phoneName.message}</Alert>}

@@ -51,6 +51,7 @@ const Home = () => {
 
     useEffect(() => {
         loadPhones();
+        // eslint-disable-next-line
     }, []);
 
     if (isLoading) {
@@ -66,12 +67,15 @@ const Home = () => {
         return (
             <Container fixed className="phone-container">
                 <Grid container spacing={3}>
-                    {phones.map((phone, i) => (
-                        <Grid key={i} item xs={12} sm={6} md={4} lg={3} xl={3}>
-                            <PhoneBox phone={phone}/>
-                        </Grid>
-                    ))}
-                    {!(phones.length) ? emptyDashboard():''}
+                    {!(phones) || !phones.length ? (
+                        emptyDashboard()
+                    ) : (
+                        phones.map((phone, i) => (
+                            <Grid key={i} item xs={12} sm={6} md={4} lg={3} xl={3}>
+                                <PhoneBox phone={phone}/>
+                            </Grid>
+                        ))
+                    ) }
                 </Grid>
             </Container>
         );

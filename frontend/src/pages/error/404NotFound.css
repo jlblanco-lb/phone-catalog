@@ -1,0 +1,49 @@
+.error404-wrapper {
+    margin-top: 20px;
+}
+.err {
+    color: #1b1b1b;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 11rem;
+    left: 20%;
+    top: 8%;
+}
+
+.err2 {
+    width: 10.5rem!important;
+    height: 10.5rem!important;
+    color: #1b1b1b;
+    pointer-events: none;
+}
+
+.err3 {
+    color: #1b1b1b;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 11rem;
+    left: 68%;
+    top: 8%;
+}
+
+.msg {
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1.6rem;
+    left: 16%;
+    top: 45%;
+    width: 75%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .err2 {
+        animation: App-logo-spin infinite 2s linear;
+    }
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

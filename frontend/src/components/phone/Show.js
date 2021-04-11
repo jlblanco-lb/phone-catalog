@@ -4,6 +4,7 @@ import PhoneBox from "./PhoneBox";
 import {CircularProgress, Container} from "@material-ui/core";
 import Header from "../nav/NavBar";
 import {Alert} from "@material-ui/lab";
+import {Redirect} from "react-router-dom";
 
 const Show = (props) => {
     const [phone, setPhone] = useState({});
@@ -35,14 +36,20 @@ const Show = (props) => {
             </div>
         )
     } else {
-        return (
-            <div className="PhoneDescriptionPage">
-                <Header/>
-                <Container fixed className="phone-container" maxWidth="xs">
-                    <PhoneBox phone={phone} full={true}/>
-                </Container>
-            </div>
-        );
+        if (!phone) {
+            return (
+                <Redirect to={'/not-found'}/>
+            )
+        } else {
+            return (
+                <div className="PhoneDescriptionPage">
+                    <Header/>
+                    <Container fixed className="phone-container" maxWidth="xs">
+                        <PhoneBox phone={phone} full={true}/>
+                    </Container>
+                </div>
+            );
+        }
     }
 };
 

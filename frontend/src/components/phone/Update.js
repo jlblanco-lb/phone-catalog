@@ -18,7 +18,7 @@ import {Controller, useForm} from "react-hook-form";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import {Send} from "@material-ui/icons";
 import * as yup from "yup";
-import {useHistory} from "react-router-dom";
+import {useHistory, Redirect} from "react-router-dom";
 import {yupResolver} from "@hookform/resolvers/yup";
 
 const PhoneUpdateSchema = yup.object().shape({
@@ -85,6 +85,7 @@ const Update = (props) => {
             })
             .catch((error) => {
                 console.log(error);
+
             });
     };
 
@@ -103,155 +104,161 @@ const Update = (props) => {
             </div>
         )
     } else {
-        return (
-            <div className="PhoneUpdatePage">
-                <Header/>
-                <Container fixed className="phone-container" maxWidth="sm">
-                    <Paper elevation={3}>
-                        <CardContent>
-                            <form onSubmit={handleSubmit(onSubmit)} >
-                                <Controller
-                                    name="phoneName"
-                                    control={control}
-                                    defaultValue={phone['name']}
-                                    render={({ field }) => <TextField
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        label="Name" type="text" variant="outlined" fullWidth margin="normal" required={true} {...field} />
-                                    }
-                                />
-                                {errors.phoneName && <Alert severity="error">{errors.phoneName.message}</Alert>}
-                                <Controller
-                                    name="manufacturer"
-                                    control={control}
-                                    defaultValue={phone['manufacturer']}
-                                    render={({field}) => <TextField
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        label="Manufacturer" type="text" variant="outlined" fullWidth margin="normal" required={true} {...field} />
-                                    }
-                                />
-                                {errors.manufacturer && <Alert severity="error">{errors.manufacturer.message}</Alert>}
-                                <Controller
-                                    name="color"
-                                    control={control}
-                                    defaultValue={phone['color']}
-                                    render={({field}) => <TextField
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        label="Color" type="text" variant="outlined" fullWidth margin="normal" required={true} {...field}/>
-                                    }
-                                />
-                                {errors.color && <Alert severity="error">{errors.color.message}</Alert>}
-                                <Controller
-                                    name="screen"
-                                    control={control}
-                                    defaultValue={phone['screen']}
-                                    render={({field}) => <TextField
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        label="Screen" type="text" variant="outlined" fullWidth margin="normal" required={true} {...field}/>
-                                    }
-                                />
-                                {errors.screen && <Alert severity="error">{errors.screen.message}</Alert>}
-                                <Controller
-                                    name="processor"
-                                    control={control}
-                                    defaultValue={phone['processor']}
-                                    render={({field}) => <TextField
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        label="Processor" type="text" variant="outlined" fullWidth margin="normal" required={true} {...field}/>
-                                    }
-                                />
-                                {errors.processor && <Alert severity="error">{errors.processor.message}</Alert>}
-                                <Controller
-                                    name="ram"
-                                    control={control}
-                                    defaultValue={phone['ram']}
-                                    render={({field}) => <TextField
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        label="RAM" type="number" variant="outlined" fullWidth margin="normal" required={true} {...field}/>
-                                    }
-                                />
-                                {errors.ram && <Alert severity="error">{errors.ram.message}</Alert>}
-                                <Controller
-                                    name="description"
-                                    control={control}
-                                    defaultValue={phone['description']}
-                                    render={({field}) => <TextField
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        label="Description" type="text" multiline rows={4} variant="outlined" fullWidth margin="normal" required={true} {...field}/>
-                                    }
-                                />
-                                {errors.description && <Alert severity="error">{errors.description.message}</Alert>}
-                                <FormControl fullWidth variant="outlined" margin="normal" >
-                                    <InputLabel htmlFor="outlined-adornment-price" required={true} >Price</InputLabel>
+        if (!phone) {
+            return (
+                <Redirect to={'/not-found'}/>
+            )
+        } else {
+            return (
+                <div className="PhoneUpdatePage">
+                    <Header/>
+                    <Container fixed className="phone-container" maxWidth="sm">
+                        <Paper elevation={3}>
+                            <CardContent>
+                                <form onSubmit={handleSubmit(onSubmit)} >
                                     <Controller
-                                        name="price"
+                                        name="phoneName"
                                         control={control}
-                                        defaultValue={phone['price']}
-                                        render={({field}) => <OutlinedInput
-                                            startAdornment={
-                                                <InputAdornment position="start">€</InputAdornment>
-                                            }
-                                            labelWidth={60} type="number" id="outlined-adornment-price" required={true} {...field}/>
+                                        defaultValue={phone['name']}
+                                        render={({ field }) => <TextField
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            label="Name" type="text" variant="outlined" fullWidth margin="normal" required={true} {...field} />
                                         }
                                     />
-                                    {errors.price && <Alert severity="error">{errors.price.message}</Alert>}
-                                </FormControl>
+                                    {errors.phoneName && <Alert severity="error">{errors.phoneName.message}</Alert>}
+                                    <Controller
+                                        name="manufacturer"
+                                        control={control}
+                                        defaultValue={phone['manufacturer']}
+                                        render={({field}) => <TextField
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            label="Manufacturer" type="text" variant="outlined" fullWidth margin="normal" required={true} {...field} />
+                                        }
+                                    />
+                                    {errors.manufacturer && <Alert severity="error">{errors.manufacturer.message}</Alert>}
+                                    <Controller
+                                        name="color"
+                                        control={control}
+                                        defaultValue={phone['color']}
+                                        render={({field}) => <TextField
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            label="Color" type="text" variant="outlined" fullWidth margin="normal" required={true} {...field}/>
+                                        }
+                                    />
+                                    {errors.color && <Alert severity="error">{errors.color.message}</Alert>}
+                                    <Controller
+                                        name="screen"
+                                        control={control}
+                                        defaultValue={phone['screen']}
+                                        render={({field}) => <TextField
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            label="Screen" type="text" variant="outlined" fullWidth margin="normal" required={true} {...field}/>
+                                        }
+                                    />
+                                    {errors.screen && <Alert severity="error">{errors.screen.message}</Alert>}
+                                    <Controller
+                                        name="processor"
+                                        control={control}
+                                        defaultValue={phone['processor']}
+                                        render={({field}) => <TextField
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            label="Processor" type="text" variant="outlined" fullWidth margin="normal" required={true} {...field}/>
+                                        }
+                                    />
+                                    {errors.processor && <Alert severity="error">{errors.processor.message}</Alert>}
+                                    <Controller
+                                        name="ram"
+                                        control={control}
+                                        defaultValue={phone['ram']}
+                                        render={({field}) => <TextField
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            label="RAM" type="number" variant="outlined" fullWidth margin="normal" required={true} {...field}/>
+                                        }
+                                    />
+                                    {errors.ram && <Alert severity="error">{errors.ram.message}</Alert>}
+                                    <Controller
+                                        name="description"
+                                        control={control}
+                                        defaultValue={phone['description']}
+                                        render={({field}) => <TextField
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            label="Description" type="text" multiline rows={4} variant="outlined" fullWidth margin="normal" required={true} {...field}/>
+                                        }
+                                    />
+                                    {errors.description && <Alert severity="error">{errors.description.message}</Alert>}
+                                    <FormControl fullWidth variant="outlined" margin="normal" >
+                                        <InputLabel htmlFor="outlined-adornment-price" required={true} >Price</InputLabel>
+                                        <Controller
+                                            name="price"
+                                            control={control}
+                                            defaultValue={phone['price']}
+                                            render={({field}) => <OutlinedInput
+                                                startAdornment={
+                                                    <InputAdornment position="start">€</InputAdornment>
+                                                }
+                                                labelWidth={60} type="number" id="outlined-adornment-price" required={true} {...field}/>
+                                            }
+                                        />
+                                        {errors.price && <Alert severity="error">{errors.price.message}</Alert>}
+                                    </FormControl>
 
-                                <input onChange={onChange} defaultValue={phone['picture']} accept="image/*" type="file" name="picture" id="phonePicture" hidden />
+                                    <input onChange={onChange} defaultValue={phone['picture']} accept="image/*" type="file" name="picture" id="phonePicture" hidden />
 
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12} md={6}>
-                                        <FormControl fullWidth variant="outlined" margin="normal">
-                                            <label htmlFor="phonePicture">
-                                                <Button
-                                                    variant="contained"
-                                                    component="span"
-                                                    size="large"
-                                                    color={isImageUploaded ? "default" : "primary"}
-                                                    startIcon={<CloudUploadIcon />}
-                                                    fullWidth
-                                                >
-                                                    {isImageUploaded ? "Change picture" : "Upload picture"}
-                                                </Button>
-                                            </label>
-                                        </FormControl>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={12} md={6}>
+                                            <FormControl fullWidth variant="outlined" margin="normal">
+                                                <label htmlFor="phonePicture">
+                                                    <Button
+                                                        variant="contained"
+                                                        component="span"
+                                                        size="large"
+                                                        color={isImageUploaded ? "default" : "primary"}
+                                                        startIcon={<CloudUploadIcon />}
+                                                        fullWidth
+                                                    >
+                                                        {isImageUploaded ? "Change picture" : "Upload picture"}
+                                                    </Button>
+                                                </label>
+                                            </FormControl>
+                                        </Grid>
+                                        <Grid item xs={12} md={6}>
+                                            <FormControl fullWidth variant="outlined" margin="normal">
+                                                <label htmlFor="icon-button-submit">
+                                                    <Button
+                                                        type="submit"
+                                                        variant="contained"
+                                                        size="large"
+                                                        color="secondary"
+                                                        fullWidth
+                                                        endIcon={<Send />}
+                                                    >
+                                                        Update
+                                                    </Button>
+                                                </label>
+                                            </FormControl>
+                                        </Grid>
                                     </Grid>
-                                    <Grid item xs={12} md={6}>
-                                        <FormControl fullWidth variant="outlined" margin="normal">
-                                            <label htmlFor="icon-button-submit">
-                                                <Button
-                                                    type="submit"
-                                                    variant="contained"
-                                                    size="large"
-                                                    color="secondary"
-                                                    fullWidth
-                                                    endIcon={<Send />}
-                                                >
-                                                    Update
-                                                </Button>
-                                            </label>
-                                        </FormControl>
-                                    </Grid>
-                                </Grid>
-                            </form>
-                        </CardContent>
-                    </Paper>
-                </Container>
-            </div>
-        );
+                                </form>
+                            </CardContent>
+                        </Paper>
+                    </Container>
+                </div>
+            );
+        }
     }
 
 };
