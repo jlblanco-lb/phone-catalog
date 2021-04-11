@@ -81,28 +81,26 @@ class PhonesTest extends ApiTestCase
 
     public function testCreateInvalidPhone(): void
     {
-        // TODO issue with serialization with API Platform, it's serializing before an exception raise.
-        /**static::createClient()->request('POST', '/api/phones', ['json' => [
-            'price' => "not_valid_string",
+        static::createClient()->request(Request::METHOD_POST, '/api/phones', ['json' => [
+            'price' => 288.2,
         ]]);
 
         $this->assertResponseStatusCodeSame(422);
         $this->assertResponseHeaderSame('content-type', 'application/ld+json; charset=utf-8');
 
         $this->assertJsonContains([
-            '@context' => '/contexts/ConstraintViolationList',
+            '@context' => '/api/contexts/ConstraintViolationList',
             '@type' => 'ConstraintViolationList',
             'hydra:title' => 'An error occurred',
-            'hydra:description' => 'isbn: This value is neither a valid ISBN-10 nor a valid ISBN-13.
-            name: This value should not be blank.
-            manufacturer: This value should not be blank.
-            description: This value should not be blank.
-            color: This value should not be blank.
-            price: This value should not be blank.
-            imageFileName: This value should not be blank.
-            screen: This value should not be blank.
-            ram: This value should not be null.',
-        ]);**/
+            'hydra:description' => 'name: This value should not be null.
+manufacturer: This value should not be blank.
+description: This value should not be blank.
+color: This value should not be blank.
+imageFileName: This value should not be blank.
+screen: This value should not be blank.
+processor: This value should not be blank.
+ram: This value should not be blank.',
+        ]);
     }
 
     public function testUpdatePhone(): void
